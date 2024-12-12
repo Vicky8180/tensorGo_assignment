@@ -59,6 +59,8 @@ async function verifyToken(idToken) {
   }
 }
 
+const tempData=[]
+
 app.post("/auth/google/login", async (req, res) => {
   const { token } = req.body;
 
@@ -67,6 +69,7 @@ app.post("/auth/google/login", async (req, res) => {
 
     console.log(userData);
     req.session.user = userData;
+    tempData.push(userData)
 
     res.json({ message: "Login successful", user: userData });
   } catch (error) {
@@ -84,25 +87,31 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/communication-history", async (req, res) => {
-  console.log(res.session);
-  if (!req.session.user) {
-    return res.status(401).json({ message: "Not authenticated" });
-  }
-
-  try {
-    const response = await axios.get(
-      "https://api.postmarkapp.com/messages/outbound",
-      {
-        headers: {
-          "X-Postmark-Server-Token": process.env.POSTMARK_API_KEY,
-        },
+    if (tempData.length < 1) {
+        return res.status(401).json({ message: "Not authenticated" });
       }
-    );
-
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to fetch communication history" });
-  }
+    
+      try {
+        const response = await axios.get(
+          "https://api.postmarkapp.com/messages/outbound",
+          {
+            headers: {
+              "X-Postmark-Server-Token": process.env.POSTMARK_API_KEY,
+              "Content-Type": "application/json",
+            },
+            params: {
+              count: 10,  
+              offset: 0,  
+            },
+          }
+        );
+    
+        console.log('Postmark Response:', response.data); 
+        res.json(response.data);
+      } catch (error) {
+        console.error('Error from Postmark:', error.response ? error.response.data : error.message);  
+        res.status(500).json({ message: "Failed to fetch communication history" });
+      }
 });
 
 app.post("/send-email", async (req, res) => {
@@ -118,7 +127,7 @@ app.post("/send-email", async (req, res) => {
     const response = await axios.post(
       "https://api.postmarkapp.com/email",
       {
-        From: "", // Replace with your verified sender email
+        From: "", // Replace with your verified sender email 
         To: to,
         Subject: subject,
         HtmlBody: body,

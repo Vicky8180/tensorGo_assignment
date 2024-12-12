@@ -10,10 +10,13 @@ const App = () => {
     const [user, setUser] = useState(null);
 
     const handleLoginSuccess = (response) => {
-        setUser({
-            profile: response.profileObj,
-            token: response.tokenId
-        });
+    response.then((data)=>{
+      setUser({
+        profile: data,
+        token: response.tokenId
+    })
+      console.log(data)})
+      ;
 
     };
 
@@ -23,8 +26,11 @@ const App = () => {
                 <GoogleLoginButton onLoginSuccess={handleLoginSuccess} />
             ) : (
                 <>
-                    <Dashboard user={user} />
-                    <ComposeEmail />
+                <div style={{display:"flex"}}>
+                <Dashboard user={user} />
+                <ComposeEmail />
+                </div>
+                  
                 </>
             )}
         </div>
