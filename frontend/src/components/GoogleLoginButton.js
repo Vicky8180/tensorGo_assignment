@@ -20,7 +20,8 @@ const GoogleLoginButton = ({ onLoginSuccess }) => {
 
 
     const handleLoginSuccess = (response) => {
-        console.log("Login Success:", response);
+        console.log("Login Success:", response.credential);
+        localStorage.setItem('authToken',response.credential)
         alert("User successfully verified!");
        const got_data= googleLogin(response.credential)
         onLoginSuccess(got_data); 

@@ -9,9 +9,24 @@ const { OAuth2Client } = require("google-auth-library");
 const app = express();
 
 // CORS setup
+// const allowedOrigins = [
+//   "https://tensor-go-assignment.vercel.app",
+//   "http://localhost:3000", // Frontend origin
+  
+// ];
+
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//     methods: "GET, POST, PUT, DELETE, OPTIONS",
+//     allowedHeaders: "Content-Type, Authorization",
+//   })
+// );
+
 const allowedOrigins = [
+  "https://tensor-go-assignment.vercel.app",
   "http://localhost:3000", // Frontend origin
-  "https://tensor-go-assignment.vercel.app"
 ];
 
 app.use(
@@ -22,6 +37,9 @@ app.use(
     allowedHeaders: "Content-Type, Authorization",
   })
 );
+
+// Handle pre-flight requests
+app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(
