@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# Communication Management System 📧
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A platform that allows users to manage communication effectively with features like viewing communication history, sending emails, and integrating user authentication with Google OAuth and email SaaS services with postmark.com.
 
-## Available Scripts
+[Live](https://tensor-go-assignment.vercel.app/)
 
-In the project directory, you can run:
 
-### `npm start`
+## Features ✨
+- **User Authentication with Google OAuth 🔐**
+  Users can authenticate and log in using their Google account, ensuring a secure and seamless login experience.
+  
+- **View Communication History 📜** 
+  Users can view their communication history, including both sent and received emails, allowing them to stay up to date with their conversations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Send Emails ✉️**
+  Implemented an endpoint to send emails via the Postmarkapp.com API, enabling users to send emails directly from the platform.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **User Onboarding Emails 📧**
+  Automated user onboarding emails are sent to ensure users are welcomed and guided through the platform.
 
-### `npm test`
+- **Real-Time Activity Log** 🕒  
+  Track all user activity in real-time to stay updated with ongoing tasks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Screenshots 📸
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![SSS](./frontend/src//assets//12.12.2024_17.49.38_REC.png)  
+_Screenshot of the task management dashboard._
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![SSS](./frontend/src//assets//12.12.2024_17.50.43_REC.png)  
+_Screenshot of the task creation form._
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tech Stack 💻
+- **Frontend**: React.js, Redux
+- **Backend**: Node.js, Express
+- **Email Service**: Postmark API, third party SaaS service for email history and commumincation (postmark.com)
+- **Authentication**: Google Auth
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation Instructions 🛠️
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
+Before you begin, ensure you have the following installed on your local machine:
 
-## Learn More
+- **Node.js** (v14 or above)  
+  Install Node.js from [nodejs.org](https://nodejs.org/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Steps to Run Locally 🚀
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1️⃣ Clone the Repository
+Clone the repository to your local machine by running the following command:
 
-### Code Splitting
+```bash
+$ git clone https://github.com/Vicky8180/tensorGo_assignment
+$ cd tensorGo_assignment
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2️⃣ Install Dependencies for frontend
+```bash
+$ npm install
+```
 
-### Analyzing the Bundle Size
+### 3 Install Dependencies for backend
+```bash
+$ npm install
+```
+### 4 Environment variables configured in .env file for backend
+```bash
+PORT=5000
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+POSTMARK_API_KEY=""
+SESSION_SECRET=""
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+### 5 Environment variables configured in .env file for both frontend 
+```bash
+REACT_APP_BASE_URL_PORT=http://localhost:5000
+REACT_APP_CLIENT_ID=""
 
-### Making a Progressive Web App
+```
+### 6 Start the Development Server
+```bash
+$ npm start
+```
+The app will be available at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 7 Build for Production
+```bash
+$ npm run build
+```
+Your optimized app will be in the `build/` directory.
 
-### Advanced Configuration
+## Contributing 🤝
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+We welcome contributions! To contribute:
 
-### Deployment
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Make your changes and commit them (`git commit -am 'Add feature'`).
+4. Push to the branch (`git push origin feature-name`).
+5. Open a Pull Request to the main repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## License 📄
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+

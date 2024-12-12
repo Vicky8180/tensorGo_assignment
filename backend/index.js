@@ -11,6 +11,7 @@ const app = express();
 // CORS setup
 const allowedOrigins = [
   "http://localhost:3000", // Frontend origin
+  "https://tensor-go-assignment.vercel.app"
 ];
 
 app.use(
